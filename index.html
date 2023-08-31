@@ -438,38 +438,66 @@
   
     <div class="session1-meeting">
 
-<div class="mdc-select mdc-select--outlined select-meeting">
-  <div class="mdc-select__anchor" aria-labelledby="outlined-select-label" style="height: 48px;">
-    <span class="mdc-notched-outline">
-      <span class="mdc-notched-outline__leading"></span>
-      <span class="mdc-notched-outline__notch">
-        <span id="outlined-select-label" class="mdc-floating-label">Dia da semana</span>
-      </span>
-      <span class="mdc-notched-outline__trailing"></span>
-    </span>
-    <span class="mdc-select__selected-text-container">
-      <span id="demo-selected-text" class="mdc-select__selected-text"></span>
-    </span>
-    <span class="mdc-select__dropdown-icon">
-      <svg
-          class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5" focusable="false">
-        <polygon
-            class="mdc-select__dropdown-icon-inactive"
-            stroke="none"
-            fill-rule="evenodd"
-            points="7 10 12 15 17 10">
-        </polygon>
-        <polygon
-            class="mdc-select__dropdown-icon-active"
-            stroke="none"
-            fill-rule="evenodd"
-            points="7 15 12 10 17 15">
-        </polygon>
-      </svg>
-    </span>
-  </div>
-</div> 
+      <div class="mdc-select mdc-select--outlined  mdc-select--open-on-focus select-meeting" >
+        <div class="mdc-select__anchor mdc-select__anchor2 " aria-labelledby="outlined-select-label2">
+        <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+            <span id="outlined-select-label2" class="mdc-floating-label">Dia da semana</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
+        </span>
+        <span class="mdc-select__selected-text-container">
+            <span id="demo-selected-text2" class="mdc-select__selected-text"></span>
+        </span>
+        <span class="mdc-select__dropdown-icon">
+            <svg
+                class="mdc-select__dropdown-icon-graphic"
+                viewBox="7 10 10 5" focusable="false">
+            <polygon
+                class="mdc-select__dropdown-icon-inactive"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 10 12 15 17 10">
+            </polygon>
+            <polygon
+                class="mdc-select__dropdown-icon-active"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 15 12 10 17 15">
+            </polygon>
+            </svg>
+        </span>
+        </div>
+    
+    
+        <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-list">
+                <ul class="mdc-list">
+                    <li class="mdc-list-item" data-value="option1">
+                        Segunda-feira
+                    </li>
+                    <li class="mdc-list-item" data-value="option2">
+                        Terça-feira
+                    </li>
+                    <li class="mdc-list-item" data-value="option3">
+                        Quarta-feira
+                    </li>
+                    <li class="mdc-list-item" data-value="option3">
+                      Quinta-feira
+                  </li>
+                  <li class="mdc-list-item" data-value="option3">
+                    Sexta-feira
+                </li>
+                <li class="mdc-list-item" data-value="option3">
+                 Sábado
+              </li>
+              <li class="mdc-list-item" data-value="option3">
+                Domingo
+            </li>
+            </ul>
+        </div>
+    </div>
 
 
 <div class="mdc-text-field mdc-text-field--outlined  input-timer">
@@ -736,6 +764,37 @@ const textFields = document.querySelectorAll('.mdc-text-field');
   textFields.forEach((textField) => {
       mdc.textField.MDCTextField.attachTo(textField);
   }); 
+
+
+
+
+
+  const selectAnchor = document.querySelector('.mdc-select__anchor2');
+const selectMenu = document.querySelector('.mdc-select__menu');
+const selectedLabel = document.getElementById('outlined-select-label2');
+const selectedText = document.getElementById('demo-selected-text2');
+
+selectAnchor.addEventListener('click', event => {
+  event.stopPropagation();
+  selectedLabel.classList.add('mdc-floating-label--float-above');
+  selectMenu.classList.toggle('mdc-menu-surface--open');
+});
+
+const listItems = document.querySelectorAll('.mdc-list-item');
+listItems.forEach(item => {
+  item.addEventListener('click', event => {
+    event.stopPropagation(); 
+    const selectedValue = item.getAttribute('data-value');
+    const selectedLabelText = item.textContent;
+    
+    selectedText.textContent = selectedLabelText;
+    selectedLabel.classList.add('mdc-floating-label--float-above');
+    selectMenu.classList.remove('mdc-menu-surface--open');
+  });
+});
+
+
+
 
 const btnMeeting = document.getElementById('btn-meeting');
         const modal = document.getElementById('meu-modal7');
